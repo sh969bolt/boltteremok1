@@ -144,7 +144,9 @@ function BookingSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [bookedTimes, setBookedTimes] = useState<string[]>([]);
+  
+  // Здесь хранятся глобально занятые слоты с сервера в формате "ДАТА_ВРЕМЯ" (например, "2026-06-04_15:30")
+  const [globalBookedSlots, setGlobalBookedSlots] = useState<string[]>([]);
 
   const timeSlots = [
     '15:00', '15:15', '15:30',
@@ -156,6 +158,29 @@ function BookingSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
     'Балансировка колес',
     'Ремонт проколов',
   ];
+
+  // URL нашего PHP-скрипта на AdminVPS
+  const BACKEND_URL = 'https://shpaginavto.ru/booking.php';
+
+  // 1. При загрузке страницы И при выборе ДАТЫ запрашиваем у сервера список всех занятых слотов
+  useEffect(() => {
+    const fetchBookedSlots = async () => {
+      try {
+        const response = await fetch(BACKEND_URL);
+        if (response.ok) {
+          const data = await response.json();
+          setGlobalBookedSlots(data); // Сохраняем массив занятых слотов со всей планеты
+        }
+      } catch (error) {
+        console.error('Ошибка получения занятых слотов:', error);
+      }
+    };
+
+    fetchBookedSlots();
+    // Обновляем данные каждые 30 секунд, чтобы клиенты видели актуальную сетку в реальном времени
+    const interval = setInterval(fetchBookedSlots, 30000);
+    return () => clearInterval(interval);
+  }, [formData.date]);
 
   const generateDates = () => {
     const dates = [];
@@ -175,47 +200,70 @@ function BookingSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
+    e.preventDefault();
+    if (!formData.date || !formData.time) {
+      alert('Пожалуйста, выберите дату и время записи!');
+      return;
+    }
 
-  const TELEGRAM_TOKEN = "8907762041:AAFWbJsQBhIN0RoSyQHPeT46zX8YuNNmi4c";
-  const TELEGRAM_CHAT_ID = "6468221586";
+    setIsSubmitting(true);
 
-  const message = `
+    const TELEGRAM_TOKEN = "8907762041:AAFWbJsQBhIN0RoSyQHPeT46zX8YuNNmi4c";
+    const TELEGRAM_CHAT_ID = "6468221586";
+
+    const message = `
 🚗 **Новая заявка на шиномонтаж!**
 👤 **Имя:** ${formData.name}
 📞 **Телефон:** ${formData.phone}
 🚘 **Автомобиль:** ${formData.carBrand || 'Не указан'}
+🛠 **Услуга:** ${formData.serviceType || 'Не указана'}
 📅 **Дата и время:** ${formData.date} в ${formData.time}
-  `.trim();
+    `.trim();
 
-  try {
-    const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: message,
-        parse_mode: 'Markdown'
-      })
-    });
+    try {
+      // СНАЧАЛА блокируем время на сервере AdminVPS
+      const backendResponse = await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ date: formData.date, time: formData.time })
+      });
 
-    if (response.ok) {
-      setSubmitStatus('success');
-      setBookedTimes([...bookedTimes, formData.time]);
-      setFormData({ name: '', phone: '', carBrand: '', date: '', time: '' });
-    } else {
+      const backendResult = await backendResponse.json();
+
+      if (backendResult.status === 'success') {
+        // ЕСЛИ сервер успешно заблокировал, отправляем уведомление в Телеграм
+        const tgResponse = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'Markdown'
+          })
+        });
+
+        if (tgResponse.ok) {
+          setSubmitStatus('success');
+          // Сразу добавляем в локальное состояние, чтобы кнопка визуально выключилась
+          setGlobalBookedSlots([...globalBookedSlots, `${formData.date}_${formData.time}`]);
+          setFormData({ name: '', phone: '', carBrand: '', date: '', time: '', serviceType: '' });
+        } else {
+          setSubmitStatus('error');
+          alert('Запись зафиксирована, но возникли проблемы с уведомлением в Telegram. Мастер свяжется с вами.');
+        }
+      } else {
+        // Если сервер ответил, что слот уже заняли секунду назад
+        alert('К сожалению, это время только что забронировал другой клиент. Пожалуйста, выберите другое время.');
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error(error);
       setSubmitStatus('error');
-      alert('Ошибка при отправке.');
+    } finaly {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     }
-  } catch (error) {
-    console.error(error);
-    setSubmitStatus('error');
-  } finally {
-    setIsSubmitting(false);
-    setTimeout(() => setSubmitStatus('idle'), 5000);
-  }
-};
+  };
 
   return (
     <section id="booking" className="py-20 md:py-32 bg-anthracite-950">
@@ -334,17 +382,25 @@ function BookingSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
               </label>
               <div className="grid grid-cols-4 gap-2">
                 {timeSlots.map((time) => {
-                  const isBooked = bookedTimes.includes(time);
+                  // Проверяем занятость комбинации конкретной ДАТЫ и ВРЕМЕНИ на сервере
+                  const slotKey = `${formData.date}_${time}`;
+                  const isBooked = globalBookedSlots.includes(slotKey);
                   const isSelected = formData.time === time;
+                  
+                  // Если дата еще не выбрана — делаем кнопки времени временно недоступными для клика
+                  const isTimeDisabled = !formData.date || isBooked;
+
                   return (
                     <button
                       key={time}
                       type="button"
-                      disabled={isBooked}
+                      disabled={isTimeDisabled}
                       onClick={() => setFormData({ ...formData, time })}
                       className={`py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                         isBooked
-                          ? 'bg-anthracite-800 text-anthracite-500 opacity-50 line-through cursor-not-allowed'
+                          ? 'bg-anthracite-850 text-anthracite-600 border border-anthracite-800 line-through cursor-not-allowed opacity-40'
+                          : !formData.date
+                          ? 'bg-anthracite-800 text-anthracite-600 border border-anthracite-800 cursor-not-allowed opacity-50'
                           : isSelected
                           ? 'bg-accent-500 text-white border border-accent-500'
                           : 'bg-anthracite-800 text-white border border-anthracite-700 hover:border-accent-500 hover:bg-anthracite-700'

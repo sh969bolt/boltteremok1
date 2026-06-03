@@ -32,7 +32,7 @@ function App() {
 
 function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden m-0 h-0">
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       <div
   className="absolute inset-0 bg-cover bg-center bg-no-repeat md:bg-fixed"
   style={{

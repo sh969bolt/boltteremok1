@@ -259,7 +259,7 @@ function BookingSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
     } catch (error) {
       console.error(error);
       setSubmitStatus('error');
-    } finaly {
+    } finally {
       setIsSubmitting(false);
       setTimeout(() => setSubmitStatus('idle'), 5000);
     }

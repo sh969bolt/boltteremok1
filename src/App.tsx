@@ -39,6 +39,7 @@ function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
           backgroundImage: `url("/shpagin.png")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
           opacity: 0.7,
         }}
       />

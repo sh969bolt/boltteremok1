@@ -33,13 +33,12 @@ function App() {
 function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-      <div
-  className="absolute inset-0 bg-cover bg-center bg-no-repeat md:bg-fixed"
-  style={{
-    backgroundImage: `url("/shpagin.png")`,
-    opacity: 0.7,
-  }}
-/>
+      <img
+        src="/shpagin.png"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        style={{ opacity: 0.7 }}
+      />
 
       <div className="absolute inset-0 bg-gradient-to-br from-anthracite-950/80 via-anthracite-900/80 to-anthracite-800/80" />
 

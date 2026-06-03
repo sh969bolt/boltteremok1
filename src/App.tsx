@@ -52,7 +52,7 @@ function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className="inline-block mb-6 px-4 py-2 border border-accent-500/30 rounded-full">
-            <span className="text-accent-500 font-medium text-sm tracking-wider uppercase">д. Клюшниково 47а</span>
+            <span className="text-accent-500 font-medium text-sm tracking-wider uppercase">Ногинск, Клюшниково 47а</span>
           </div>
         </motion.div>
 
@@ -666,7 +666,7 @@ function ContactsSection() {
             </div>
             <h3 className="font-semibold text-lg mb-2">Телефон</h3>
             <a
-              href="tel:+79991234567"
+              href="tel:+79296776505"
               className="text-2xl font-bold text-accent-500 hover:text-accent-400 transition-colors"
             >
               +7 (929) 677-65-05

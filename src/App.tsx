@@ -34,7 +34,7 @@ function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       <img
-        src="/shpagin.png"
+        src="/111.jpg"
         alt=""
         className="absolute inset-0 w-full h-full object-cover object-center"
         style={{ opacity: 0.7 }}

@@ -32,7 +32,7 @@ function App() {
 
 function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden m-0 h-0">
       <div
   className="absolute inset-0 bg-cover bg-center bg-no-repeat md:bg-fixed"
   style={{
@@ -43,7 +43,7 @@ function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
 
       <div className="absolute inset-0 bg-gradient-to-br from-anthracite-950/80 via-anthracite-900/80 to-anthracite-800/80" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-full mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

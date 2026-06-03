@@ -36,7 +36,7 @@ function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: `url("/shinomon.png")`,
+          backgroundImage: `url("/shpagin.png")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.8,

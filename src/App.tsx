@@ -147,7 +147,7 @@ function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
               download="evakuator.vcf"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-base px-6 py-4 rounded-lg border border-zinc-700 transition-all duration-300 transform hover:scale-105"
             >
-              Сохранить визитку 24/7
+              Сохр конт эвакуатора
               <Download className="w-5 h-5 text-accent-500" />
             </a>
           </div>

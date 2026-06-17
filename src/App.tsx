@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import {
   Phone,
@@ -12,10 +13,20 @@ import {
   Car,
   User,
   X,
-  Download
+  Download,
+  ArrowLeft,
 } from 'lucide-react';
 
 function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/evakuator" element={<EvakuatorPage />} />
+    </Routes>
+  );
+}
+
+function MainPage() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showCookieNotice, setShowCookieNotice] = useState(false);
 
@@ -109,7 +120,12 @@ function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
         >
           Шиномонтаж
           <span className="block text-accent-500 text-3xl sm:text-4xl md:text-5xl lg:text-6xl my-2">&</span>
-          <span className="block text-accent-500">эвакуатор</span>
+          <Link
+            to="/evakuator"
+            className="block text-accent-500 hover:text-white transition-all duration-300 hover:scale-110 inline-block cursor-pointer hover:drop-shadow-[0_0_24px_rgba(249,115,22,0.9)]"
+          >
+            эвакуатор
+          </Link>
         </motion.h1>
 
         <motion.p
@@ -617,6 +633,85 @@ function PrivacyModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
           <p>По любым вопросам пользователи могут обратиться по электронной почте: 89036105441@mail.ru.</p>
         </div>
       </div>
+    </div>
+  );
+}
+
+function EvakuatorPage() {
+  return (
+    <div className="min-h-screen bg-anthracite-900 text-white font-sans">
+      <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+        <img
+          src="/111.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ opacity: 0.4 }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-anthracite-950/85 via-anthracite-900/80 to-anthracite-800/75" />
+
+        <Link
+          to="/"
+          className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 text-anthracite-300 hover:text-white bg-anthracite-900/60 hover:bg-anthracite-800/80 border border-anthracite-700 hover:border-accent-500 backdrop-blur-sm px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          На главную
+        </Link>
+
+        <div className="relative z-10 text-center px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mb-4"
+          >
+            <div className="inline-block px-4 py-2 border border-accent-500/30 rounded-full bg-anthracite-900/40 backdrop-blur-sm">
+              <span className="text-accent-500 font-medium text-sm tracking-wider uppercase">Круглосуточно, без выходных</span>
+            </div>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight mb-4"
+          >
+            Эвакуатор
+            <span className="block text-accent-500">24/7</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="text-lg sm:text-xl text-anthracite-300 mb-12"
+          >
+            Ногинск&nbsp;&nbsp;·&nbsp;&nbsp;Электросталь&nbsp;&nbsp;·&nbsp;&nbsp;Горьковское шоссе
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.55 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto"
+          >
+            <a
+              href="tel:+79999879820"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-accent-500 hover:bg-accent-600 text-white font-black text-lg px-8 py-5 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/40 uppercase tracking-wide"
+            >
+              <Phone className="w-6 h-6" />
+              Вызвать эвакуатор
+            </a>
+            <a
+              href="/evakuator.vcf"
+              download="evakuator.vcf"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-anthracite-800 hover:bg-anthracite-700 text-white font-black text-lg px-8 py-5 rounded-xl border border-anthracite-600 hover:border-accent-500 transition-all duration-300 hover:scale-105 uppercase tracking-wide"
+            >
+              <Download className="w-6 h-6 text-accent-500" />
+              Сохранить контакт
+            </a>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }

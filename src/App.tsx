@@ -134,7 +134,7 @@ function HeroSection({ onPrivacyClick }: { onPrivacyClick: () => void }) {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-lg sm:text-xl text-anthracite-300 max-w-2xl mx-auto mb-10"
         >
-          Полный комплекс услуг по эвакуации транспорта и шиномонтажу. Честные цены, мастера с огромным опытом, гарантия на все работы.
+          Полный комплекс услуг по эвакуации транспорта и шиномонтажу в Ногинке и Электростали. Честные цены, мастера с огромным опытом, гарантия на все работы.
         </motion.p>
 
         <motion.div

@@ -669,14 +669,14 @@ function EvakuatorPage() {
             </div>
           </motion.div>
 
-          <motion.h1
+<motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight mb-4"
           >
-            Эвакуатор
-            <span className="block text-accent-500">24/7</span>
+            Эвакуатор в Ногинске
+            <span className="block text-accent-500">круглосуточно 24/7</span>
           </motion.h1>
 
           <motion.p
@@ -685,7 +685,7 @@ function EvakuatorPage() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-lg sm:text-xl text-anthracite-300 mb-12"
           >
-            Ногинск&nbsp;&nbsp;·&nbsp;&nbsp;Электросталь&nbsp;&nbsp;·&nbsp;&nbsp;Горьковское шоссе
+            Быстрая подача от 20 минут: Электросталь · Горьковское шоссе · Клюшниково
           </motion.p>
 
           <motion.div
@@ -710,10 +710,3 @@ function EvakuatorPage() {
               Сохранить контакт
             </a>
           </motion.div>
-        </div>
-      </section>
-    </div>
-  );
-}
-
-export default App;

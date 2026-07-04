@@ -708,6 +708,6 @@ function EvakuatorPage() {
             >
               <Download className="w-6 h-6 text-accent-500" />
               Сохранить контакт
-            </a>
+           </a>
           </div>
         </motion.div>

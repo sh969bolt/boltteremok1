@@ -669,14 +669,14 @@ function EvakuatorPage() {
             </div>
           </motion.div>
 
-<motion.h1
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight mb-4"
           >
-            Эвакуатор в Ногинске
-            <span className="block text-accent-500">круглосуточно 24/7</span>
+            Эвакуатор
+            <span className="block text-accent-500">24/7</span>
           </motion.h1>
 
           <motion.p
@@ -685,7 +685,7 @@ function EvakuatorPage() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-lg sm:text-xl text-anthracite-300 mb-12"
           >
-            Быстрая подача от 20 минут: Электросталь · Горьковское шоссе · Клюшниково
+            Ногинск&nbsp;&nbsp;·&nbsp;&nbsp;Электросталь&nbsp;&nbsp;·&nbsp;&nbsp;Горьковское шоссе
           </motion.p>
 
           <motion.div
@@ -701,13 +701,19 @@ function EvakuatorPage() {
               <Phone className="w-6 h-6" />
               Вызвать эвакуатор
             </a>
-        <a
+            <a
               href="/evakuator.vcf"
               download="evakuator.vcf"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-anthracite-800 hover:bg-anthracite-700 text-white font-black text-lg px-8 py-5 rounded-xl border border-anthracite-600 hover:border-accent-500 transition-all duration-300 hover:scale-105 uppercase tracking-wide"
             >
               <Download className="w-6 h-6 text-accent-500" />
               Сохранить контакт
-           </a>
-          </div>
-        </motion.div>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export default App;

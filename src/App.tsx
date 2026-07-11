@@ -72,7 +72,7 @@ END:VCARD`;
               className="w-full sm:w-auto flex items-center justify-center gap-3 bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-orange-500/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
             >
               <Phone className="w-5 h-5 animate-pulse" />
-              Позвонить эвакуатору
+              Вызвать эвакуатор
             </a>
 
             <button 

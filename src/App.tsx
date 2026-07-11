@@ -96,7 +96,7 @@ END:VCARD`;
             <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 mb-4">
               <Clock className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold mb-2">Подача 15–30 мин</h3>
+            <h3 className="text-xl font-bold mb-2">Подача от 15–20 мин</h3>
             <p className="text-neutral-400 text-sm leading-relaxed">
               Собственный транспорт на базе дежурит на ключевых развязках Горьковского шоссе, обеспечивая мгновенный выезд.
             </p>

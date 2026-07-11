@@ -36,7 +36,7 @@ END:VCARD`;
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-500 px-4 py-1.5 rounded-full text-sm font-medium mb-6"
           >
-            <Truck className="w-4 h-4" /> Служба эвакуации в Ногинске
+            <Truck className="w-4 h-4" /> Быстрый Ногинский Эвакуатор
           </motion.div>
 
           <motion.h1 

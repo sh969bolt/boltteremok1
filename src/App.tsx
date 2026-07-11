@@ -109,7 +109,7 @@ END:VCARD`;
             <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 mb-4">
               <MapPin className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold mb-2">Ногинск и пригород</h3>
+            <h3 className="text-xl font-bold mb-2">Ногинск Электросталь</h3>
             <p className="text-neutral-400 text-sm leading-relaxed">
               Базируемся по адресу: ул. Клюшникова, 47. Прекрасно знаем местность, подаем спецтехнику без навигационных задержек.
             </p>

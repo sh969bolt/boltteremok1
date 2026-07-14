@@ -808,9 +808,9 @@ function EvakuatorPage() {
           <div className="flex justify-center mb-3 text-accent-500/30">
             <Truck className="w-5 h-5" />
           </div>
-          <p className="text-xs text-anthracite-500 uppercase tracking-widest mb-2">Локальная служба эвакуации</p>
+          <p className="text-xs text-anthracite-500 uppercase tracking-widest mb-2">Надежная служба эвакуации</p>
           <p className="text-xs text-anthracite-400 italic leading-relaxed">
-            «ШпагинАвто» — дежурный эвакуатор на Клюшниково, 47а в Ногинске. Оставьте отзыв о качестве нашей работы на Яндекс Картах прямо со смартфона во время вызова, и оператор учтет персональную скидку на месте!
+            «Быстрый Ногинский Эвакуатор» — надежная техника и вежливые водители. Оставьте отзыв о качестве нашей работы на Яндекс Картах прямо со смартфона во время вызова, и водитель сделает Вам индивидуальное предложение.
           </p>
         </div>
       </section>

@@ -781,19 +781,19 @@ function EvakuatorPage() {
           <div className="bg-anthracite-800 rounded-2xl border border-anthracite-700 p-6 sm:p-8 space-y-4">
             <div className="flex justify-between items-center py-3 border-b border-anthracite-700/50">
               <span className="text-anthracite-200 font-medium">Легковые автомобили</span>
-              <span className="font-bold text-accent-500 text-lg">от 2 500 ₽</span>
+              <span className="font-bold text-accent-500 text-lg">от 5000 ₽</span>
             </div>
             <div className="flex justify-between items-center py-3 border-b border-anthracite-700/50">
               <span className="text-anthracite-200 font-medium">Внедорожники и кроссоверы</span>
-              <span className="font-bold text-accent-500 text-lg">от 3 000 ₽</span>
+              <span className="font-bold text-accent-500 text-lg">от 6000 ₽</span>
             </div>
             <div className="flex justify-between items-center py-3 border-b border-anthracite-700/50">
               <span className="text-anthracite-200 font-medium">Коммерческий транспорт (микроавтобусы)</span>
-              <span className="font-bold text-accent-500 text-lg">от 3 500 ₽</span>
+              <span className="font-bold text-accent-500 text-lg">от 7000 ₽</span>
             </div>
             <div className="flex justify-between items-center py-3">
               <span className="text-anthracite-200 font-medium">Загородный тариф (за пределами города)</span>
-              <span className="font-bold text-accent-500 text-lg">от 50 ₽/км</span>
+              <span className="font-bold text-accent-500 text-lg">от 100 ₽/км</span>
             </div>
           </div>
           <p className="text-xs text-anthracite-500 text-center mt-4 leading-relaxed">
